@@ -25,14 +25,15 @@ SECRET_KEY = 'red&1yyc^0o**1_+vw43affq_e&e25c1g1mw%f^6g3%&ri__40'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['python-belt.bmjh4mvwqx.us-west-1.elasticbeanstalk.com',
+                    '127.0.0.1',]
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'apps.users',
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -119,10 +120,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 ### Uncomment the following lines and run python manage.py collectstatic before deploying
-# STATIC_ROOT = 'collected_static'  
+STATIC_ROOT = 'www/static/'  
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
 HOME_URL = '/users/'
 LOGIN_URL = '/combined/'
+
+### http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html
