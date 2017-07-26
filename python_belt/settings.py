@@ -121,7 +121,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 ### Uncomment the following lines and run python manage.py collectstatic before deploying
-# STATIC_ROOT = 'www/static/'  
+STATIC_ROOT = 'www/static/'  
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
