@@ -13,7 +13,7 @@ import bcrypt
 class UserManager(models.Manager):
     def validate_registration(self, data):
         errors = []
-        valid, data = validate.registration_form(data)
+        valid, r_data = validate.registration_form(data)
         if valid:
             existing_users = self.filter(username=data['username'])
             if existing_users:
@@ -21,8 +21,8 @@ class UserManager(models.Manager):
                     'username', 'username already registered if you have forgoten your password please use the password reset link'))
             else:
                 return (True, data)
-        
-        errors.extend(data)
+        else:
+            errors.extend(r_data)
         return (False, errors)
            
     def add_user(self, data, ses):

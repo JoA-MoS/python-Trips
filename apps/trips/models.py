@@ -9,9 +9,8 @@ import validate
 # Create your models here.
 
 
-class TripsManager(models.Manager):
+class TripManager(models.Manager):
     def get_user_trips(self, user):
-
         return user.trips.all()|self.filter(travelers=user)
 
     def get_available_trips(self, user):
@@ -43,7 +42,7 @@ class TripsManager(models.Manager):
       
 
 class Trip(models.Model):
-    objects = TripsManager()
+    objects = TripManager()
 
     destination = models.CharField(max_length=255)
     start_date = models.DateTimeField()
