@@ -15,10 +15,10 @@ class UserManager(models.Manager):
         errors = []
         valid, data = validate.registration_form(data)
         if valid:
-            existing_users = self.filter(email=data['email'])
+            existing_users = self.filter(username=data['username'])
             if existing_users:
                 errors.append(Error(
-                    'email', 'email already registered if you have forgoten your password please use the password reset link'))
+                    'username', 'username already registered if you have forgoten your password please use the password reset link'))
             else:
                 return (True, data)
         
@@ -29,9 +29,9 @@ class UserManager(models.Manager):
         valid, errors = self.validate_registration(data)
         if valid:
             hashedpwd = bcrypt.hashpw(data['password'].encode(), bcrypt.gensalt())
-            new_user = self.create(first_name=data['first_name'],
-                                       last_name=data['last_name'],
-                                       email=data['email'],
+            new_user = self.create(name=data['name'],
+                                    #    last_name=data['last_name'],
+                                       username=data['username'],
                                        password=hashedpwd,)
             ses['user_id'] = new_user.id
             return (valid, new_user)
@@ -59,14 +59,14 @@ class UserManager(models.Manager):
         valid, data = validate.login_form(data)
         if valid:
             # if the login form looks good check if the user password matches
-            users = self.filter(email=data['email'])
+            users = self.filter(username=data['username'])
             if len(users) > 1:
-                errors.append(Error('email', 'something went wrong please contact customer support'))
+                errors.append(Error('username', 'something went wrong please contact customer support'))
             elif len(users) == 0:
-                errors.append(Error('email', 'please check your email and try again'))
+                errors.append(Error('username', 'please check your username and try again'))
             else:
                 if bcrypt.hashpw(data['password'].encode(), users[0].password.encode()) != users[0].password:
-                    errors.append(Error('email, password', 'incorrect email and password combination please try again'))
+                    errors.append(Error('username, password', 'incorrect username and password combination please try again'))
                 else:
                     ses['user_id']=users[0].id
                     return (True, users[0])
@@ -78,22 +78,24 @@ class UserManager(models.Manager):
 
 class User(models.Model):
     objects = UserManager()
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.CharField(max_length=255)
+    # name = models.CharField(max_length=100)
+    # last_name = models.CharField(max_length=100)
+    # username = models.CharField(max_length=255)
+    name = models.CharField(max_length=100)
+    username = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return '{}: {} {} {}'.format(self.id, self.first_name, self.last_name, self.email)
+        return '{}: {} {}'.format(self.id, self.name, self.username)
 
     def __unicode__(self):
-        return '{}: {} {} {}'.format(self.id, self.first_name, self.last_name, self.email)
+        return '{}: {} {}'.format(self.id, self.name, self.username)
 
-    @property
-    def full_name(self):
-        return '{} {}'.format(self.first_name, self.last_name)
+    # @property
+    # def full_name(self):
+    #     return '{} {}'.format(self.name, self.last_name)
 
     @property
     def is_authenticated(self):

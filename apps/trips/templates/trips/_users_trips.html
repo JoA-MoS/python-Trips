@@ -1,0 +1,24 @@
+<h3>Other User's Travel Plans</h3>
+<table class="table table-striped">
+    <thead class="thead-inverse">
+        <tr>
+            <th>Name</th>
+            <th>Destination</th>
+            <th>Travel Start Date</th>
+            <th>Travel End Date</th>
+            <th>Do you want to Join</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% if available_trips %} {% for trip in available_trips %}
+        <tr>
+            <td scope="row">{{trip.owner.name}}</td>
+            <td><a href="{% url 'trips:show' trip.id %}">{{trip.destination}}</a></td>           
+            <td>{{trip.start_date|date}}</td>
+            <td>{{trip.end_date|date}}</td>
+            <td><a href="{% url 'trips:join' trip.id %}">Join</a></td>
+        </tr>
+        {% endfor %} {% endif %}
+    </tbody>
+</table>

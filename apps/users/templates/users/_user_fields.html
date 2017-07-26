@@ -1,15 +1,15 @@
     <div class="form-group">
-        <label for="first_name">First Name:</label>
-        <input type="text" class="form-control" name="first_name" id="first_name" value="{{user.first_name}}" aria-describedby="first_name_help" placeholder="Enter your first name">
-        <small id="first_name_help" class="form-text text-muted">Enter your first name</small>
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" name="name" id="name" value="{{user.name}}" aria-describedby="name_help" placeholder="Enter your name">
+        <small id="name_help" class="form-text text-muted">Enter your name</small>
     </div>
-    <div class="form-group">
+    {% comment %} <div class="form-group">
         <label for="last_name">Last Name:</label>
         <input type="text" class="form-control" name="last_name" id="last_name" value="{{user.last_name}}" aria-describedby="last_name_help" placeholder="Enter your last name" >
         <small id="last_name_help" class="form-text text-muted">Enter your last name</small>
-    </div>
+    </div> {% endcomment %}
     <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" class="form-control" name="email" id="email"  value="{{user.email}}" aria-describedby="email_help" placeholder="Enter your email">
-        <small id="email_help" class="form-text text-muted">Enter your email</small>
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" name="username" id="username"  value="{{user.username}}" aria-describedby="username_help" placeholder="Enter your username">
+        <small id="username_help" class="form-text text-muted">Enter your username</small>
     </div>

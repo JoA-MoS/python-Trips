@@ -1,0 +1,11 @@
+{% extends 'base.html' %} 
+{% block title %}Travel Dashboard{% endblock title %}
+{% block content %}
+<h2>Hello, {{user.name}}</h2>
+<br>
+{% include '_flash_msgs.html' %}
+{% include "./_trip_schedules.html" %} 
+<br>
+{% include "./_users_trips.html" %} 
+
+{% endblock content %}

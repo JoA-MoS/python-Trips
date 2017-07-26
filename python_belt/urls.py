@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url, include
 
 urlpatterns = [
-    url(r'^',include('apps.users.urls',namespace='users')),
+    url(r'^travels/', include('apps.trips.urls', namespace='trips')),
+    url(r'^main/',include('apps.users.urls',namespace='users')),
+    url(r'^',include('apps.trips.urls')),
 ]
 

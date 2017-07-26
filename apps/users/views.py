@@ -80,7 +80,7 @@ def show_login(request):
 def login(request):
     logging.debug(' %s. %s -  %s' % (request.resolver_match.namespaces,
                                      request.resolver_match.func.__name__, request.path))
-    """Validates user is email and password, sets session variables"""
+    """Validates user is username and password, sets session variables"""
 
     valid, data = User.objects.authenticate(request.POST, request.session)
     if valid:

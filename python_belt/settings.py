@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['python-belt.bmjh4mvwqx.us-west-1.elasticbeanstalk.com',
 
 INSTALLED_APPS = [
     'apps.users',
+    'apps.trips',
     # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,12 +121,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 ### Uncomment the following lines and run python manage.py collectstatic before deploying
-STATIC_ROOT = 'www/static/'  
+# STATIC_ROOT = 'www/static/'  
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-HOME_URL = '/users/'
-LOGIN_URL = '/combined/'
+HOME_URL = '/travels/'
+LOGIN_URL = '/main/combined/'
 
 ### http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html

@@ -1,0 +1,31 @@
+{% extends 'base.html' %} 
+{% block title %}Destination{% endblock title %} 
+{% block content %}
+  <h2>{{trip.destination}}</h2>
+  <div class="form-group">
+    <label>Planned By:</label>
+    <span class="form-control-static">{{ trip.owner.name}}</span>
+  </div>
+  <div class="form-group">
+    <label>Description:</label>
+    <span class="form-control-static">{{ trip.description }}</span>
+  </div>
+  <div class="form-group">
+    <label>Travel Date From:</label>
+    <span class="form-control-static">{{trip.start_date|date}}</span>
+  </div>
+  <div class="form-group">
+    <label>Travel Date To:</label>
+    <span class="form-control-static">{{trip.end_date|date}}</span>
+  </div>
+
+  <h2>Other user's joining the trip</h2>
+  {% if trip.travelers %}
+
+  <ul>
+    {% for traveler in trip.travelers.all %}
+    <li>{{traveler.name}}</li>
+    {% endfor %}
+  </ul>
+  {% endif %} 
+{% endblock content %}
