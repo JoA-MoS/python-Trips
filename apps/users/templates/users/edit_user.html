@@ -1,0 +1,13 @@
+{% extends 'base.html' %} 
+{% block title %}Register/Login{% endblock title %}
+{% block content %} 
+
+<form action="{% url 'users:update' user.id %}" method="POST">
+    {% csrf_token %}
+    <h2>Update User</h2>
+{% include '_flash_msgs.html' %}
+{% include './_user_fields.html' %}
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+{% endblock content %}

@@ -1,0 +1,15 @@
+<form action="{% url 'users:create' %}" method="POST">
+    {% csrf_token %}
+    <h2>Registration</h2>
+{% include '_flash_msgs.html' %}
+{% include './_user_fields.html' %}
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" name="password" id="password" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="c_password">Confirm Password:</label>
+        <input type="password" class="form-control" name="c_password" id="c_password" placeholder="">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
